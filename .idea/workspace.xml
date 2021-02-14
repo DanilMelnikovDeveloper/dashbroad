@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1c039704-2d68-4a89-8aa0-f0ae6a74792b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1oKq9bSxk7aPAsa7BpEEtoaCCuQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.18.0" />
+    <property name="last_opened_file_path" value="C:/Program Files/nodejs/node_modules/npm" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="C:/Program Files/nodejs/node_modules/npm" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\PycharmProjects\npm\node\src" />
+      <recent name="C:\Users\user\PycharmProjects\npm\node\node_modules" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="3000">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1c039704-2d68-4a89-8aa0-f0ae6a74792b" name="Default Changelist" comment="" />
+      <created>1613045478267</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613045478267</updated>
+      <workItem from="1613045479702" duration="3393000" />
+      <workItem from="1613050720714" duration="132000" />
+      <workItem from="1613053555021" duration="4760000" />
+      <workItem from="1613096546633" duration="3574000" />
+      <workItem from="1613103426945" duration="1334000" />
+      <workItem from="1613118532501" duration="1197000" />
+      <workItem from="1613119907151" duration="9480000" />
+      <workItem from="1613138903787" duration="4617000" />
+      <workItem from="1613182596897" duration="3369000" />
+      <workItem from="1613202598633" duration="3862000" />
+      <workItem from="1613207515463" duration="2131000" />
+      <workItem from="1613216849400" duration="3094000" />
+      <workItem from="1613269963581" duration="355000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613185718971">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.832/1920.0.1522.900@0.0.1536.832" timestamp="1613185718971" />
+    <state x="462" y="207" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1613054843373">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="462" y="207" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.832@0.0.1536.832" timestamp="1613054843373" />
+    <state x="498" y="99" key="FileChooserDialogImpl" timestamp="1613185847048">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="498" y="99" key="FileChooserDialogImpl/0.0.1536.832/1920.0.1522.900@0.0.1536.832" timestamp="1613185847048" />
+    <state x="149" y="0" key="SettingsEditor" timestamp="1613185849744">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="149" y="0" key="SettingsEditor/0.0.1536.832/1920.0.1522.900@0.0.1536.832" timestamp="1613185849744" />
+    <state x="347" y="-1" key="search.everywhere.popup" timestamp="1613205779078">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="347" y="-1" key="search.everywhere.popup/0.0.1536.832/1920.0.1522.900@0.0.1536.832" timestamp="1613205779078" />
+  </component>
+</project>
