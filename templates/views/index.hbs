@@ -14,9 +14,22 @@
     <link rel="stylesheet" href="/css/styles.css">
     <title>Admin Page</title>
 </head>
-<body class="bg-info">
+<body>
+
 <!-- START HERE -->
-<h1 class="text-center py-4">Административная страница</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">Администрация</span>
+    </div>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="btn btn-outline-success" href="/">Открыть сайт</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-outline-danger" href="/users/logout">Выйти</a>
+        </li>
+    </ul>
+</nav>
 
 <div class="container">
 
@@ -24,7 +37,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 {{#each breadcrumb}}
-                    <li class="breadcrumb-item"><a href="{{this.full_path}}">{{this.name}}</a></li>
+                    {{#if this}}
+                        <li class="breadcrumb-item"><a href="{{this.full_path}}">{{this.name}}</a></li>
+                    {{/if}}
                 {{/each}}
             </ol>
         </nav>
@@ -33,7 +48,7 @@
     <div class="bg-light p-4 my-2">
         <div>
             {{#if title}}
-                <div class="btn btn-block btn-light text-left border-bottom active">{{title}}:</div>
+                <div class="btn btn-block btn-light text-left border-bottom active mb-4">{{title}}:</div>
             {{/if}}
             <form action="{{url}}" method="post" {{#if enctype}}enctype="{{ enctype }}"{{/if}}>
                 {{#if submit_bottom }}
@@ -54,70 +69,109 @@
                             {{/if}}
                         </div>
                     </div>
+
+                    {{#if addable}}
+                        <div class="input-group mb-3">
+                            <input id="searchBox" type="text" class="form-control" placeholder="Поиск ...">
+                            <div class="input-group-append">
+                                <button id="findAll" type="submit" class="input-group-text  btn btn-info"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
+                {{#if deletable}}
+                    <div id="selectAllDeletable" class="btn btn-light active btn-block text-left border-bottom">
+                        <div class="ml-4 text-primary">Выделить все</div>
+                    </div>
                 {{/if}}
                 {{#if objects }}
                     <div class="form-check">
                         {{#each objects }}
-                            <div class="btn btn-light btn-block text-left border-bottom">
-                                {{#if this.deletable}}
-                                    <input type="checkbox" class="form-check-input ml-1" name="{{this.id}}">
-                                {{/if}}
-                                <a class="ml-4 text-primary" href="{{this.url}}">{{ this.name}}</a>
-                            </div>
+                            {{#if this}}
+                                <div class="object btn btn-light btn-block text-left border-bottom">
+                                    {{#if this.deletable}}
+                                        <input type="checkbox" class="form-check-input ml-1 deletable"
+                                               name="{{this.id}}">
+                                    {{/if}}
+                                    <a class="object-a ml-4 text-primary" href="{{this.url}}">{{this.name}}</a>
+                                </div>
+                            {{/if}}
                         {{/each}}
                     </div>
                 {{/if}}
 
                 {{#if charfield}}
                     {{#each charfield}}
-                        <div class="form-group">
-                            <label for="#name">{{this.label}}</label>
-                            <input class="form-control"
-                                   type="{{#if this.type}}{{this.type}}{{else}}text{{/if}}"
-                                   name="{{this.name}}"
-                                   value="{{this.default}}"
-                                   {{#if this.required}}required{{/if}}>
-                        </div>
+                        {{#if this}}
+                            <div class="form-group">
+                                <label for="#name">{{this.label}}</label>
+                                <input class="form-control"
+                                       type="{{#if this.type}}{{this.type}}{{else}}text{{/if}}"
+                                       name="{{this.name}}"
+                                       value="{{this.default}}"
+                                       maxlength="{{this.maxlength}}"
+                                       {{#if this.required}}required{{/if}}>
+                            </div>
+                        {{/if}}
                     {{/each}}
                 {{/if}}
 
                 {{#if textfield}}
                     {{#each textfield}}
-                        <div class="form-group">
-                            <label for="#name">{{this.label}}</label>
-                            <textarea type="text" class="form-control" rows="4"
-                                      name="{{this.name}}" {{this.required}}>{{this.default}}</textarea>
-                        </div>
+                        {{#if this}}
+                            <div class="form-group">
+                                <label for="#name">{{this.label}}</label>
+                                <textarea type="text" class="form-control" rows="4"
+                                          name="{{this.name}}" {{this.required}}>{{this.default}}</textarea>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+
+                {{#if checkbox}}
+                    {{#each checkbox}}
+                        {{#if this}}
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" value="true" id="id-{{this.name}}"
+                                       name="{{this.name}}" {{#if this.default}}checked{{/if}}>
+                                <label class="form-check-label" for="id-{{this.name}}">{{this.label}}</label>
+                            </div>
+                        {{/if}}
                     {{/each}}
                 {{/if}}
 
                 {{#if filefield}}
                     {{#each filefield}}
-                        <div class="form-group">
-                            <label for="id-{{this.name}}">{{this.label}}</label>
-                            <input type="file" class="form-control-file" name="{{this.name}}" id="id-{{this.name}}">
-                        </div>
+                        {{#if this}}
+                            <div class="form-group my-4">
+                                <label for="id-{{this.name}}">{{this.label}}</label>
+                                <input type="file" class="form-control-file" name="{{this.name}}" id="id-{{this.name}}">
+                            </div>
+                        {{/if}}
                     {{/each}}
                 {{/if}}
 
                 {{#if image}}
                     <div class="w-100">
                         <div class="w-25 ml-auto">
-                            <img class="img-fluid" src="data:image/{{image.contentType}};base64,{{image.data}}" alt="">
+                            <img class="img-fluid" src="{{image}}" alt="">
                         </div>
                     </div>
                 {{/if}}
 
-                {{#if checkbox}}
-                    {{#each checkbox}}
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" value="true" id="id-{{this.name}}"
-                                   name="{{this.name}}" {{this.default}}>
-                            <label class="form-check-label" for="id-{{this.name}}">{{this.label}}</label>
-                        </div>
+                {{#if messages}}
+                    {{#each messages}}
+                        {{#if this}}
+                            <div class="alert {{this.messageClass}} alert-dismissible fade show" role="alert">
+                                {{this.message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {{/if}}
                     {{/each}}
                 {{/if}}
-
                 {{#if submit_bottom }}
                     <div class="text-right">
                         <button type="submit" class="btn btn-info mt-4">
@@ -149,7 +203,6 @@
     let deleteBtn = $("#deleteBtn");
 
     $('input[type=checkbox]').click(function () {
-
         if ($(this).is(':checked')) {
             checkboxChecked += 2;
             deleteBtn.removeClass("disabled");
@@ -164,6 +217,45 @@
     last_breadcrumb_item.addClass('active');
     last_breadcrumb_item.text(last_breadcrumb_item.find("a")[0].innerHTML)
 
+    let selectAllDeletable = false;
+    $("#selectAllDeletable").click(function () {
+        if (!selectAllDeletable) {
+            this.firstElementChild.innerHTML = "Снять выделение"
+            selectAllDeletable = true;
+            deleteBtn.removeClass("disabled");
+        } else {
+            this.firstElementChild.innerHTML = "Выделить все"
+            selectAllDeletable = false;
+            deleteBtn.addClass("disabled");
+        }
+        $('.deletable').prop("checked", selectAllDeletable)
+    })
+
+    function showAll() {
+        let valSearchBox = $("#searchBox").val().toLowerCase();
+        let objects = $(".object");
+
+        objects.each(function (index, object) {
+            let object_a = object.getElementsByClassName("object-a")[0]
+            if (object_a.innerHTML.toLowerCase().startsWith(valSearchBox)) {
+                object.style.display = "block"
+            } else {
+                object.style.display = "none"
+            }
+        })
+    }
+
+    $(document).on("keydown", "#searchBox", function (event) {
+        if (event.keyCode === 13) {
+            showAll()
+            return event.key !== "Enter";
+        }
+    });
+
+    $("#findAll").click(function (e) {
+        showAll()
+        e.preventDefault();
+    })
 </script>
 </body>
 </html>
