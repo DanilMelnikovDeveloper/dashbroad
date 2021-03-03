@@ -19,8 +19,8 @@ const categoryItemSchema = new mongoose.Schema({
     category: {type: String, required: true},
     title: String,
     subtitle: String,
-    textField: String,
-    imageField: {
+    text: String,
+    image: {
         data: Buffer,
         contentType: String
     },
