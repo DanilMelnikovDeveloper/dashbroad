@@ -7,6 +7,22 @@ const models = require("../models");
 const controllers = require("../controllers");
 const helpers = require("../helpers");
 
+function getTable(categoryItemTable) {
+    let table = [];
+    if (categoryItemTable) {
+        categoryItemTable.split("<n>").forEach(row => {
+            let rowDict = {"cells": row};
+            if (row.includes('<b>')) {
+                rowDict['rowBold'] = true;
+                rowDict['cells'] = rowDict['cells'].split("<b>").join("").split("</b>").join("")
+            }
+            rowDict['cells'] = rowDict['cells'].split("|")
+            table.push(rowDict)
+        })
+    }
+    return table
+}
+
 function add_default_fields(category = {}, categoryItem = {}) {
     return {
         charfield: [
@@ -28,14 +44,20 @@ function add_default_fields(category = {}, categoryItem = {}) {
                 default: categoryItem.text,
                 maxlength: 15000
             } : "",
+            category.tableField ? {
+                label: 'Таблица',
+                name: 'table',
+                default: categoryItem.table
+            } : "",
             {
                 label: 'Описание:', name: 'description', default: categoryItem.description,
                 maxlength: 200
             }
         ],
-        textfield: [],
         filefield: [category.imageField ? {label: 'Изображение:', name: 'image'} : "",],
         checkbox: [{label: "Информация активна", name: "actuality", default: categoryItem.actuality}],
+        tablefield: !!category.tableField,
+        tablerows: categoryItem.table ? getTable(categoryItem.table) : "",
         enctype: category.imageField ? "multipart/form-data" : "",
         image: categoryItem.image,
         submit_bottom: true,
@@ -45,16 +67,9 @@ function add_default_fields(category = {}, categoryItem = {}) {
 router.get("/:url/api", async (req, res) => {
     let data = await controllers.findModel({
         model: models.CategoryItem, filter: {actuality: true, category: req.params.url},
-        projection: {
-            uuid: false,
-            __v: false,
-            actuality: false,
-            created_at: false,
-            updated_at: false,
-            description: false,
-            category: false,
-        }
+        fields: 'title subtitle text image table',
     });
+
     res.send(data);
 });
 
@@ -87,7 +102,6 @@ router.get("/:url/add", async (req, res) => {
 router.post('/:url/add', helpers.upload.single('image'), async (req, res, next) => {
     let categoryUrl = req.params.url;
     let obj = {...req.body, category: categoryUrl,};
-
     if (req.file) obj.image = '/uploads/' + req.params.url + "/" + req.file.filename;
 
     let item = await controllers.findModel({model: models.CategoryItem, type: "last"});

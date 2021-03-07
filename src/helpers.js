@@ -63,6 +63,15 @@ async function handleAction() {
         user = new models.User(user);
         await user.save();
         console.log('Пользователь добавлен')
+    } else if (args.action === 'initdb') {
+        let categories = require("../initialdb/categories.json")
+        let categoryItems = require("../initialdb/categoryitems.json")
+        let users = require("../initialdb/users.json")
+
+        await models.Category.insertMany(categories);
+        await models.CategoryItem.insertMany(categoryItems);
+        await models.User.insertMany(users);
+        console.log("Элементы добавленны в базу данных")
     }
 }
 

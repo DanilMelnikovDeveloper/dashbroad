@@ -7,7 +7,6 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
-
 const categorySchema = new mongoose.Schema({
         _id: {type: String, required: true},
         name: {type: String, required: true},
@@ -18,6 +17,7 @@ const categorySchema = new mongoose.Schema({
         subtitleField: Boolean,
         textField: Boolean,
         imageField: Boolean,
+        tableField: Boolean,
         description: {type: String},
         actuality: {type: Boolean, default: false},
     }, {_id: false, timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}}
@@ -33,13 +33,13 @@ const categoryItemSchema = new mongoose.Schema({
         subtitle: String,
         text: String,
         image: String,
+        table: String,
         actuality: {type: Boolean},
         description: {type: String},
     }, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}}
 );
 
 const CategoryItem = mongoose.model("CategoryItem", categoryItemSchema);
-
 
 const userSchema = new mongoose.Schema({
         _id: {type: Number, required: true},
@@ -52,7 +52,6 @@ const userSchema = new mongoose.Schema({
 );
 
 const User = mongoose.model("User", userSchema);
-
 
 const tokenSchema = new mongoose.Schema({
         authToken: {type: String, required: true},

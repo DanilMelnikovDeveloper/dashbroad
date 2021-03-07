@@ -23,7 +23,7 @@
     </div>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="btn btn-outline-success" href="/">Открыть сайт</a>
+            <a class="btn btn-outline-success" href="https://it-lyceum.na4u.ru/">Открыть сайт</a>
         </li>
         <li class="nav-item">
             <a class="btn btn-outline-danger" href="/users/logout">Выйти</a>
@@ -152,6 +152,78 @@
                     {{/each}}
                 {{/if}}
 
+                {{#if tablefield}}
+                    <div class="d-flex">
+                        <div class="ml-auto">
+                            <div class="btn btn-info" id="downloadTable">Скачать csv</div>
+                        </div>
+                    </div>
+                    <br>
+                    <table class="table table-striped  table-bordered">
+                        <thead>
+                        <tr id="top-menu">
+                            <th>
+                                <div class="icon btn btn-light btn-sm"><i class="fas fa-arrow-circle-left"></i></div>
+                                <div class="icon btn btn-light btn-sm"><i class="fas fa-arrow-circle-right"></i></div>
+                            </th>
+                            <th>
+                                <div class="icon btn btn-light btn-sm">
+                                    <i class="fas fa-arrow-circle-down"></i>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#if tablerows}}
+                            {{#each tablerows}}
+                                <tr {{#if this.rowBold}}class="font-weight-bold"{{/if}}>
+                                    {{#each this.cells}}
+                                        <td contenteditable='true'>{{this}}</td>
+                                    {{/each}}
+                                </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr class="font-weight-bold">
+                                <td contenteditable='true'>Залоговок 1</td>
+                                <td contenteditable='true'>Залоговок 2</td>
+                                <td contenteditable='true'>Залоговок 3</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'>Наведите на клетку</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'>Редактирование сверху</td>
+                            <tr>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'>Редактирование справа</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'>Не сохраняйте таблица и она не будет отображена!</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'>Не забудьте сохранить таблицу при изменении!</td>
+                            </tr>
+                        {{/if}}
+                        </tbody>
+                    </table>
+
+                    <div class="btn btn-info" id="save-table">Сохранить таблицу</div>
+                {{/if}}
+
                 {{#if image}}
                     <div class="w-100">
                         <div class="w-25 ml-auto">
@@ -257,5 +329,136 @@
         e.preventDefault();
     })
 </script>
+
+{{#if tablefield}}
+    <script>
+        let table = $("table");
+        let td = "<td contenteditable='true'></td>"
+
+        function getElementIndex(element) {
+            return Array.from(element.parentNode.children).indexOf(element) + 1;
+        }
+
+        $('div.form-group:has(input[name="table"])').hide()
+
+        let thTopMenu = "";
+        $('tr:not(:first-child)>th:not(:last-child), td').on("mouseover", function () {
+            if (thTopMenu) {
+                thTopMenu.removeClass('visible')
+            }
+            let elementIndex = getElementIndex(this);
+            thTopMenu = $(`tr#top-menu th:nth-child(${elementIndex})`);
+            thTopMenu.addClass('visible')
+        })
+
+        table.on("mouseleave", function () {
+            if (thTopMenu) thTopMenu.removeClass('visible');
+            thTopMenu = ""
+        })
+
+        function tdCont(icon) {
+            return `<div class="icon btn btn-light btn-sm"><i class="fas fa-${icon}"></i></div>`
+        }
+
+        let right_navigation = `<td>${tdCont("arrow-circle-up")} ${tdCont("arrow-circle-down")} ${tdCont("bold")} ${tdCont("trash")}</td>`
+        let top_navigation = `<th>${tdCont("arrow-circle-left")} ${tdCont("arrow-circle-right")} ${tdCont("trash")}</th>`
+
+        $("tbody>tr").append(right_navigation)
+        $(top_navigation.repeat($("tbody tr:first-child td").length - 2)).insertAfter($("thead th:first-child"))
+
+        table.on('click', 'tbody div.icon:has(i.fa-arrow-circle-down)', function () {
+            let tr = this.parentElement.parentElement;
+            $("<tr>" + td.repeat(tr.childElementCount - 1) + right_navigation + "</tr>").insertAfter($(tr))
+        })
+
+        table.on('click', 'thead div.icon:has(i.fa-arrow-circle-down)', function () {
+            let tr = this.parentElement.parentElement;
+            $('tbody').prepend("<tr>" + td.repeat(tr.childElementCount - 1) + right_navigation + "</tr>")
+        })
+
+        table.on('click', 'div.icon:has(i.fa-arrow-circle-up)', function () {
+            let tr = this.parentElement.parentElement;
+            $("<tr>" + td.repeat(tr.childElementCount - 1) + right_navigation + "</tr>").insertBefore($(tr))
+        })
+
+        table.on('click', 'tbody div.icon:has(i.fa-trash)', function () {
+            let tr = this.parentElement.parentElement;
+            $(tr).remove();
+        })
+
+        table.on('click', 'thead div.icon:has(i.fa-arrow-circle-right)', function () {
+            let th = this.parentElement;
+            let thIndex = getElementIndex(th);
+            $(top_navigation).insertAfter($(th))
+            $(td).insertAfter($(`td:nth-child(${thIndex})`))
+        })
+
+        table.on('click', 'thead div.icon:has(i.fa-trash)', function () {
+            let th = this.parentElement;
+            let thIndex = getElementIndex(th);
+            $(`th:nth-child(${thIndex}), td:nth-child(${thIndex})`).remove()
+        })
+
+        table.on('click', 'thead th:not(:first-child) div.icon:has(i.fa-arrow-circle-left)', function () {
+            let th = this.parentElement;
+            let thIndex = getElementIndex(th);
+            $(top_navigation).insertBefore($(th))
+            $(td).insertBefore($(`td:nth-child(${thIndex})`))
+        })
+
+        table.on('click', 'thead th:first-child div.icon:has(i.fa-arrow-circle-left)', function () {
+            let th = this.parentElement;
+            let thIndex = getElementIndex(th);
+
+            $(th).clone().insertBefore($(th))
+            $(td).insertBefore($(`td:nth-child(${thIndex})`))
+            th.innerHTML = top_navigation;
+        })
+
+        table.on('click', 'div.icon:has(i.fa-bold)', function () {
+            let tr = this.parentElement.parentElement;
+            $(tr).toggleClass('font-weight-bold')
+        })
+
+        function csv() {
+            let rows = table.children('tbody').children();
+            let csv = "";
+
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].children;
+                let is_cells_bold = rows[i].classList.contains("font-weight-bold")
+                for (let j = 0; j < cells.length - 1; j++) {
+                    if (is_cells_bold) {
+                        csv += '<b>' + cells[j].textContent + '</b>'
+                    } else {
+                        csv += cells[j].textContent
+                    }
+
+                    if (j + 1 < cells.length - 1) {
+                        csv += "|"
+                    }
+                }
+                if (i + 1 < rows.length) csv += "<n>"
+            }
+
+            return csv
+        }
+
+        $('#save-table').click(function () {
+            $('input[name=table]').val(csv());
+        })
+
+        $("#downloadTable").click(function () {
+            let table = [];
+            let csvContent = "data:text/csv;charset=utf-8," + csv().split("<n>").join("\n");
+            let encodedUri = encodeURI(csvContent);
+            let link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "таблица.csv");
+            document.body.appendChild(link);
+            link.click();
+        })
+    </script>
+{{/if}}
 </body>
 </html>

@@ -20,6 +20,7 @@ let default_fields = (category = {}) => {
             {label: "Включить подзаголовок", name: "subtitleField", default: category.subtitleField},
             {label: "Включить текст", name: "textField", default: category.textField},
             {label: "Включить изображение", name: "imageField", default: category.imageField},
+            {label: "Включить таблицу", name: "tableField", default: category.tableField},
             {label: "Категория активна", name: "actuality", default: category.actuality}
         ],
         filefield: [{label: 'Изображение:', name: 'image'}],
@@ -34,6 +35,7 @@ let default_fields_off = {
     subtitleField: false,
     textField: false,
     imageField: false,
+    tableField: false,
     actuality: false
 };
 
@@ -48,6 +50,7 @@ router.get("/api", async (req, res) => {
             imageField: false,
             subtitleField: false,
             textField: false,
+            tableField: false,
             created_at: false,
             updated_at: false,
             description: false

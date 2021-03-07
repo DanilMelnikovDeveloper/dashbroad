@@ -1,6 +1,6 @@
 const helpers = require('../helpers');
 
-async function findModel({model, filter, type, projection}) {
+async function findModel({model, filter, type, projection, fields}) {
     if (type === "one") return model.findOne(filter, (err) => {
         if (err) console.log(err)
     });
@@ -9,7 +9,7 @@ async function findModel({model, filter, type, projection}) {
     }
     return await model.find(filter, projection, (err) => {
         if (err) console.log(err)
-    }).sort({'created_at': -1});
+    }).sort({'_id': -1}).select(fields);
 }
 
 async function getListObjects({model, filter, title, url, addable, changeable, deletable}) {

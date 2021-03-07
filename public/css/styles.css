@@ -13,3 +13,39 @@ a {
 .nav-item {
     margin: 0 5px;
 }
+
+table {
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+tr div.icon {
+    visibility: hidden;
+}
+
+th.visible div.icon {
+    visibility: visible !important;
+}
+
+tr > td:last-child {
+    width: 250px !important;
+}
+
+tr span {
+    all: revert !important;
+}
+tr:hover div.icon {
+    visibility: visible;
+}
+
+tr:hover {
+    background: #bee5eb !important;
+}
+
+tr#top-menu:hover {
+    background: none !important;
+}
+

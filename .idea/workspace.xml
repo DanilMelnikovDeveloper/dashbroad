@@ -2,36 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c039704-2d68-4a89-8aa0-f0ae6a74792b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routers/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/initialdb/categories.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/initialdb/categoryitems.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/initialdb/users.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routers/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/categories.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routers/categoryItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/categoryItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/views/index.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/templates/views/index.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/views/object.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/views/objects.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613208513384" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613208579132" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613208691162" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613208823420" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613208934507" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613208951666" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209160695" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209234474" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209259404" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209328953" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209354605" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209372812" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209415501" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/image-1613209623983" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +141,19 @@
       <workItem from="1614551018141" duration="3305000" />
       <workItem from="1614651575755" duration="1823000" />
       <workItem from="1614765389848" duration="4912000" />
+      <workItem from="1614776244648" duration="939000" />
+      <workItem from="1614827513628" duration="2689000" />
+      <workItem from="1614841549820" duration="1210000" />
+      <workItem from="1614856629384" duration="241000" />
+      <workItem from="1614857175376" duration="618000" />
+      <workItem from="1614913820297" duration="5496000" />
+      <workItem from="1614954640464" duration="2930000" />
+      <workItem from="1614987697123" duration="10287000" />
+      <workItem from="1614999287690" duration="22000" />
+      <workItem from="1615009978428" duration="3686000" />
+      <workItem from="1615030322846" duration="5233000" />
+      <workItem from="1615076471023" duration="1245000" />
+      <workItem from="1615097001957" duration="3214000" />
     </task>
     <servers />
   </component>
